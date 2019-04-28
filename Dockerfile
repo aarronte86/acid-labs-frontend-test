@@ -19,7 +19,7 @@ RUN npm run build
 FROM nginx:1.15.12-alpine
 
 COPY --from=build /usr/src/app/nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=build /usr/src/app/build /usr/src/nginx/html
+COPY --from=build /usr/src/app/build /etc/nginx/html
 
 ENV PORT=4200
 EXPOSE $PORT
