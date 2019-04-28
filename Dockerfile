@@ -16,10 +16,10 @@ COPY . /usr/src/app
 RUN npm run build
 
 ### STAGE 2: Production Environment ###
-FROM nginx:stable-alpine
+FROM nginx:1.15.12-alpine
 
 COPY --from=build /usr/src/app/nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=build /usr/src/app/build /usr/share/nginx/html
+COPY --from=build /usr/src/app/build /usr/src/nginx/html
 
 ENV PORT=4200
 EXPOSE $PORT
