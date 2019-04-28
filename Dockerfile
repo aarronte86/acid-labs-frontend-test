@@ -18,10 +18,10 @@ RUN npm run build
 ### STAGE 2: Production Environment ###
 FROM nginx:1.15.12-alpine
 
-COPY --from=build /usr/src/app/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /usr/src/app/nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /usr/src/app/build /usr/src/nginx/html
 
 ENV PORT=4200
 EXPOSE $PORT
 
-CMD sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'
+CMD sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/nginx.conf && nginx -g 'daemon off;'
