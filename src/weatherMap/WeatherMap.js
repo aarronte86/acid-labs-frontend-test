@@ -56,12 +56,14 @@ class WeatherMap extends React.Component {
         selectedPlace
       });
 
-      this.setState(state => ({ ...state, ...capitalData, loading: false }));
+      this.setState(state => ({ ...state, ...capitalData }));
     } catch (error) {
       alert(
         'No capital could be found from the selected location. Please ensure to make click on a country.'
       );
     }
+
+    this.setState({ loading: false });
   };
 
   onInfoWindowClose = () => this.closeInfoWindow();
